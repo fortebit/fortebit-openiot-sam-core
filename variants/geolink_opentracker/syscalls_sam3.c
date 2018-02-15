@@ -132,8 +132,7 @@ extern int _write( UNUSED(int file), char *ptr, int len )
 
 extern void _exit( int status )
 {
-//  printf is probably not set up by Arduino, and shouldn't be used.
-//    printf( "Exiting with status %d.\n", status ) ;
+    printf( "Exiting with status %d.\n", status ) ;
 
     for ( ; ; ) ;
 }
