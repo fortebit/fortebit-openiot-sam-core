@@ -1,49 +1,78 @@
+# See: https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5-3rd-party-Hardware-specification
 
-arduino_due_x_dbg.name=Arduino Due (Programming Port)
-arduino_due_x_dbg.vid.0=0x2341
-arduino_due_x_dbg.pid.0=0x003d
-arduino_due_x_dbg.vid.1=0x2A03
-arduino_due_x_dbg.pid.1=0x003d
-arduino_due_x_dbg.upload.tool=bossac
-arduino_due_x_dbg.upload.protocol=sam-ba
-arduino_due_x_dbg.upload.maximum_size=524288
-arduino_due_x_dbg.upload.use_1200bps_touch=true
-arduino_due_x_dbg.upload.wait_for_upload_port=false
-arduino_due_x_dbg.upload.native_usb=false
-arduino_due_x_dbg.build.mcu=cortex-m3
-arduino_due_x_dbg.build.f_cpu=84000000L
-arduino_due_x_dbg.build.usb_manufacturer="Arduino LLC"
-arduino_due_x_dbg.build.usb_product="Arduino Due"
-arduino_due_x_dbg.build.board=SAM_DUE
-arduino_due_x_dbg.build.core=arduino
-arduino_due_x_dbg.build.extra_flags=-D__SAM3X8E__ -mthumb {build.usb_flags}
-arduino_due_x_dbg.build.ldscript=linker_scripts/gcc/flash.ld
-arduino_due_x_dbg.build.variant=arduino_due_x
-arduino_due_x_dbg.build.variant_system_lib=libsam_sam3x8e_gcc_rel.a
-arduino_due_x_dbg.build.vid=0x2341
-arduino_due_x_dbg.build.pid=0x003e
+menu.Modem=Modem Model
+menu.SecureBit=Flash Security
 
-arduino_due_x.name=Arduino Due (Native USB Port)
-arduino_due_x.vid.0=0x2341
-arduino_due_x.pid.0=0x003e
-arduino_due_x.vid.1=0x2A03
-arduino_due_x.pid.1=0x003e
-arduino_due_x.upload.tool=bossac
-arduino_due_x.upload.protocol=sam-ba
-arduino_due_x.upload.maximum_size=524288
-arduino_due_x.upload.use_1200bps_touch=true
-arduino_due_x.upload.wait_for_upload_port=true
-arduino_due_x.upload.native_usb=true
-arduino_due_x.build.mcu=cortex-m3
-arduino_due_x.build.f_cpu=84000000L
-arduino_due_x.build.usb_manufacturer="Arduino LLC"
-arduino_due_x.build.usb_product="Arduino Due"
-arduino_due_x.build.board=SAM_DUE
-arduino_due_x.build.core=arduino
-arduino_due_x.build.extra_flags=-D__SAM3X8E__ -mthumb {build.usb_flags}
-arduino_due_x.build.ldscript=linker_scripts/gcc/flash.ld
-arduino_due_x.build.variant=arduino_due_x
-arduino_due_x.build.variant_system_lib=libsam_sam3x8e_gcc_rel.a
-arduino_due_x.build.vid=0x2341
-arduino_due_x.build.pid=0x003e
+## Old board revision 2.4
 
+opentracker_2_4.name=Geolink OpenTracker v2.4
+opentracker_2_4.vid.0=0x2341
+opentracker_2_4.pid.0=0x003e
+opentracker_2_4.vid.1=0x2a03
+opentracker_2_4.pid.1=0x003e
+opentracker_2_4.upload.tool=bossac
+opentracker_2_4.upload.protocol=sam-ba
+opentracker_2_4.upload.maximum_size=131072
+opentracker_2_4.upload.maximum_data_size=65536
+opentracker_2_4.upload.use_1200bps_touch=true
+opentracker_2_4.upload.wait_for_upload_port=true
+opentracker_2_4.upload.native_usb=true
+opentracker_2_4.build.mcu=cortex-m3
+opentracker_2_4.build.f_cpu=84000000L
+opentracker_2_4.build.usb_product="Geolink OpenTracker v2"
+opentracker_2_4.build.board=OPENTRACKER_V2
+opentracker_2_4.build.core=arduino
+opentracker_2_4.build.extra_flags=-D__SAM3A4C__ -mthumb {build.usb_flags} -DOPENTRACKER_HW_REV=0x0240 {build.modem_flags}
+opentracker_2_4.build.ldscript=linker_scripts/gcc/flash.ld
+opentracker_2_4.build.variant=geolink_opentracker
+opentracker_2_4.build.variant_system_lib=libsam_sam3a4c_gcc_rel.a
+opentracker_2_4.build.vid=0x2341
+opentracker_2_4.build.pid=0x003e
+
+## Menu Additions
+
+opentracker_2_4.menu.Modem=Modem Model
+opentracker_2_4.menu.Modem.UG96=UG96 (Penta-Band 3G)
+opentracker_2_4.menu.Modem.UG96.build.modem_flags=-DMODEM_UG96=1
+opentracker_2_4.menu.Modem.M95=M95 (Quad-Band 2.5G)
+opentracker_2_4.menu.Modem.M95.build.modem_flags=-DMODEM_M95=1
+
+opentracker_2_4.menu.SecureBit=Flash Security
+opentracker_2_4.menu.SecureBit.disabled=Unlocked
+opentracker_2_4.menu.SecureBit.disabled.upload.tool=bossac
+opentracker_2_4.menu.SecureBit.enabled=SecureBit
+opentracker_2_4.menu.SecureBit.enabled.upload.tool=bossac_secure
+
+## Old board revision 2.3 and earlier
+
+opentracker_2_3.name=Geolink OpenTracker v2.3 (and earlier)
+opentracker_2_3.vid.0=0x2341
+opentracker_2_3.pid.0=0x003e
+opentracker_2_3.vid.1=0x2a03
+opentracker_2_3.pid.1=0x003e
+opentracker_2_3.upload.tool=bossac
+opentracker_2_3.upload.protocol=sam-ba
+opentracker_2_3.upload.maximum_size=131072
+opentracker_2_3.upload.maximum_data_size=65536
+opentracker_2_3.upload.use_1200bps_touch=true
+opentracker_2_3.upload.wait_for_upload_port=true
+opentracker_2_3.upload.native_usb=true
+opentracker_2_3.build.mcu=cortex-m3
+opentracker_2_3.build.f_cpu=84000000L
+opentracker_2_3.build.usb_product="Geolink OpenTracker v2"
+opentracker_2_3.build.board=OPENTRACKER_V2
+opentracker_2_3.build.core=arduino
+opentracker_2_3.build.extra_flags=-D__SAM3A4C__ -mthumb {build.usb_flags} -DOPENTRACKER_HW_REV=0x0230 -DMODEM_M95=1
+opentracker_2_3.build.ldscript=linker_scripts/gcc/flash.ld
+opentracker_2_3.build.variant=geolink_opentracker
+opentracker_2_3.build.variant_system_lib=libsam_sam3a4c_gcc_rel.a
+opentracker_2_3.build.vid=0x2341
+opentracker_2_3.build.pid=0x003e
+
+## Menu Additions
+
+opentracker_2_3.menu.SecureBit=Flash Security
+opentracker_2_3.menu.SecureBit.disabled=Unlocked
+opentracker_2_3.menu.SecureBit.disabled.upload.tool=bossac
+opentracker_2_3.menu.SecureBit.enabled=SecureBit
+opentracker_2_3.menu.SecureBit.enabled.upload.tool=bossac_secure

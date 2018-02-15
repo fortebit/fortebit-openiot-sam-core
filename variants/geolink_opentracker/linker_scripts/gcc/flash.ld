@@ -34,18 +34,21 @@ SEARCH_DIR(.)
 /* Memory Spaces Definitions */
 MEMORY
 {
-	rom (rx)    : ORIGIN = 0x00080000, LENGTH = 0x00080000 /* Flash, 512K */
-	sram0 (rwx) : ORIGIN = 0x20000000, LENGTH = 0x00010000 /* sram0, 64K */
+	rom (rx)    : ORIGIN = 0x00080000, LENGTH = 0x00020000 /* Flash, 128K */
+	eeprom (rx) : ORIGIN = 0x000A0000, LENGTH = 0x00020000 /* Flash, 128K */
+	sram0 (rwx) : ORIGIN = 0x20000000, LENGTH = 0x00008000 /* sram0, 32K */
 	sram1 (rwx) : ORIGIN = 0x20080000, LENGTH = 0x00008000 /* sram1, 32K */
-	ram (rwx)   : ORIGIN = 0x20070000, LENGTH = 0x00018000 /* sram, 96K */
+	ram (rwx)   : ORIGIN = 0x20078000, LENGTH = 0x00010000 /* sram, 64K contiguous */
 }
-
-/* The stack size used by the application. NOTE: you need to adjust  */
-STACK_SIZE = DEFINED(STACK_SIZE) ? STACK_SIZE : 0x2000 ;
 
 /* Section Definitions */
 SECTIONS
 {
+    .nvdata :
+    {
+        KEEP(*(.nvdata))
+    } > eeprom
+
     .text :
     {
         . = ALIGN(4);
@@ -93,7 +96,15 @@ SECTIONS
 
         . = ALIGN(4);
         _efixed = .;            /* End of text section */
-    } > ram
+    } > rom
+
+    /* .ARM.exidx is sorted, so has to go in its own output section.  */
+    PROVIDE_HIDDEN (__exidx_start = .);
+    .ARM.exidx :
+    {
+      *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+    } > rom
+    PROVIDE_HIDDEN (__exidx_end = .);
 
     . = ALIGN(4);
     _etext = .;
@@ -109,7 +120,7 @@ SECTIONS
     } > ram
 
     /* .bss section which is used for uninitialized data */
-    .bss (NOLOAD) :
+    .bss ALIGN(4) (NOLOAD) :
     {
         . = ALIGN(4);
         _sbss = . ;
@@ -121,25 +132,21 @@ SECTIONS
         _ezero = .;
     } > ram
 
-    /* stack section */
-    .stack (NOLOAD):
-    {
-        . = ALIGN(8);
-        _sstack = .;
-        . = . + STACK_SIZE;
-        . = ALIGN(8);
-        _estack = .;
-    } > ram
-
-    /* .ARM.exidx is sorted, so has to go in its own output section.  */
-    PROVIDE_HIDDEN (__exidx_start = .);
-    .ARM.exidx :
-    {
-      *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-    } > ram
-    PROVIDE_HIDDEN (__exidx_end = .);
-
     . = ALIGN(4);
     _end = . ;
-}
 
+    /* .stack_dummy section doesn't contains any symbols. It is only
+       used for linker to calculate size of stack sections, and assign
+       values to stack symbols later */
+    .stack_dummy :
+    {
+        *(.stack*)
+    } > ram
+
+    /* Set stack top to end of ram, and stack limit move down by
+     * size of stack_dummy section */
+    __StackTop = ORIGIN(ram) + LENGTH(ram);
+    __StackLimit = __StackTop - SIZEOF(.stack_dummy);
+    PROVIDE(_sstack = __StackLimit);
+    PROVIDE(_estack = __StackTop);
+}

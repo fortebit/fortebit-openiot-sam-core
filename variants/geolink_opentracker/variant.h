@@ -15,9 +15,10 @@
   License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+#pragma once
 
-#ifndef _VARIANT_ARDUINO_DUE_X_
-#define _VARIANT_ARDUINO_DUE_X_
+#ifndef _VARIANT_OPENTRACKER_
+#define _VARIANT_OPENTRACKER_
 
 /*----------------------------------------------------------------------------
  *        Definitions
@@ -55,10 +56,9 @@ extern "C"{
  *----------------------------------------------------------------------------*/
 
 // Number of pins defined in PinDescription array
-#define PINS_COUNT           (79u)
-#define NUM_DIGITAL_PINS     (66u)
-#define NUM_ANALOG_INPUTS    (12u)
-#define analogInputToDigitalPin(p)  ((p < 12u) ? (p) + 54u : -1)
+#define PINS_COUNT           (40u)
+#define NUM_DIGITAL_PINS     (40u)
+#define NUM_ANALOG_INPUTS    (5u)
 
 #define digitalPinToPort(P)        ( g_APinDescription[P].pPort )
 #define digitalPinToBitMask(P)     ( g_APinDescription[P].ulPin )
@@ -90,11 +90,8 @@ extern "C"{
 
 // LEDs
 #define PIN_LED_13           (13u)
-#define PIN_LED_RXL          (72u)
-#define PIN_LED_TXL          (73u)
 #define PIN_LED              PIN_LED_13
-#define PIN_LED2             PIN_LED_RXL
-#define PIN_LED3             PIN_LED_TXL
+#define PIN_POWER_LED          13
 #define LED_BUILTIN          13
 
 /*
@@ -104,33 +101,28 @@ extern "C"{
 
 #define SPI_INTERFACE        SPI0
 #define SPI_INTERFACE_ID     ID_SPI0
-#define SPI_CHANNELS_NUM 4
-#define PIN_SPI_SS0          (77u)
-#define PIN_SPI_SS1          (87u)
-#define PIN_SPI_SS2          (86u)
-#define PIN_SPI_SS3          (78u)
-#define PIN_SPI_MOSI         (75u)
-#define PIN_SPI_MISO         (74u)
-#define PIN_SPI_SCK          (76u)
-#define BOARD_SPI_SS0        (10u)
-#define BOARD_SPI_SS1        (4u)
-#define BOARD_SPI_SS2        (52u)
-#define BOARD_SPI_SS3        PIN_SPI_SS3
-#define BOARD_SPI_DEFAULT_SS BOARD_SPI_SS3
+#define SPI_CHANNELS_NUM 3
+#define PIN_SPI_SS0          (37u)
+#define PIN_SPI_SS1          (47u)
+#define PIN_SPI_SS2          (46u)
+#define PIN_SPI_MOSI         (35u)
+#define PIN_SPI_MISO         (34u)
+#define PIN_SPI_SCK          (36u)
+#define BOARD_SPI_SS0        PIN_SPI_SS0
+#define BOARD_SPI_SS1        PIN_SPI_SS1
+#define BOARD_SPI_SS2        PIN_SPI_SS2
+#define BOARD_SPI_DEFAULT_SS BOARD_SPI_SS0
 
 #define BOARD_PIN_TO_SPI_PIN(x) \
 	(x==BOARD_SPI_SS0 ? PIN_SPI_SS0 : \
-	(x==BOARD_SPI_SS1 ? PIN_SPI_SS1 : \
-	(x==BOARD_SPI_SS2 ? PIN_SPI_SS2 : PIN_SPI_SS3 )))
+	(x==BOARD_SPI_SS1 ? PIN_SPI_SS1 : PIN_SPI_SS2 ))
 #define BOARD_PIN_TO_SPI_CHANNEL(x) \
 	(x==BOARD_SPI_SS0 ? 0 : \
-	(x==BOARD_SPI_SS1 ? 1 : \
-	(x==BOARD_SPI_SS2 ? 2 : 3)))
+	(x==BOARD_SPI_SS1 ? 1 : 2))
 
 static const uint8_t SS   = BOARD_SPI_SS0;
 static const uint8_t SS1  = BOARD_SPI_SS1;
 static const uint8_t SS2  = BOARD_SPI_SS2;
-static const uint8_t SS3  = BOARD_SPI_SS3;
 static const uint8_t MOSI = PIN_SPI_MOSI;
 static const uint8_t MISO = PIN_SPI_MISO;
 static const uint8_t SCK  = PIN_SPI_SCK;
@@ -138,7 +130,7 @@ static const uint8_t SCK  = PIN_SPI_SCK;
 /*
  * Wire Interfaces
  */
-#define WIRE_INTERFACES_COUNT 2
+#define WIRE_INTERFACES_COUNT 1
 
 #define PIN_WIRE_SDA         (20u)
 #define PIN_WIRE_SCL         (21u)
@@ -147,67 +139,40 @@ static const uint8_t SCK  = PIN_SPI_SCK;
 #define WIRE_ISR_HANDLER     TWI1_Handler
 #define WIRE_ISR_ID          TWI1_IRQn
 
-#define PIN_WIRE1_SDA        (70u)
-#define PIN_WIRE1_SCL        (71u)
-#define WIRE1_INTERFACE      TWI0
-#define WIRE1_INTERFACE_ID   ID_TWI0
-#define WIRE1_ISR_HANDLER    TWI0_Handler
-#define WIRE1_ISR_ID         TWI0_IRQn
-
-static const uint8_t SDA  = PIN_WIRE_SDA;
-static const uint8_t SCL  = PIN_WIRE_SCL;
-static const uint8_t SDA1 = PIN_WIRE1_SDA;
-static const uint8_t SCL1 = PIN_WIRE1_SCL;
-
 /*
  * UART/USART Interfaces
  */
 // Serial
-#define PINS_UART            (81u)
+#define PINS_UART            (41u)
 // Serial1
-#define PINS_USART0          (82u)
+#define PINS_USART0          (42u)
 // Serial2
-#define PINS_USART1          (83u)
+#define PINS_USART1          (43u)
 // Serial3
-#define PINS_USART3          (84u)
+#define PINS_USART2          (44u)
 
 /*
  * USB Interfaces
  */
-#define PINS_USB             (85u)
+#define PINS_USB             (45u)
 
 /*
  * Analog pins
  */
-static const uint8_t A0  = 54;
-static const uint8_t A1  = 55;
-static const uint8_t A2  = 56;
-static const uint8_t A3  = 57;
-static const uint8_t A4  = 58;
-static const uint8_t A5  = 59;
-static const uint8_t A6  = 60;
-static const uint8_t A7  = 61;
-static const uint8_t A8  = 62;
-static const uint8_t A9  = 63;
-static const uint8_t A10 = 64;
-static const uint8_t A11 = 65;
-static const uint8_t DAC0 = 66;
-static const uint8_t DAC1 = 67;
-static const uint8_t CANRX = 68;
-static const uint8_t CANTX = 69;
+static const uint8_t A2  = 31;
+static const uint8_t A3  = 30;
+static const uint8_t A5  = 28;
+static const uint8_t A6  = 29;
+static const uint8_t A8  = 49;
+static const uint8_t DAC1 = 48;
+static const uint8_t CANRX = 32;
+static const uint8_t CANTX = 33;
 #define ADC_RESOLUTION		12
 
-/*
- * Complementary CAN pins
- */
-static const uint8_t CAN1RX = 88;
-static const uint8_t CAN1TX = 89;
-
 // CAN0
-#define PINS_CAN0            (90u)
-// CAN1
-#define PINS_CAN1            (91u)
-
+#define PINS_CAN0            (50u)
+// no enable pin (due_can compatibility)
+#define CAN0_EN	255
 
 /*
  * DACC
@@ -270,15 +235,15 @@ extern USARTClass Serial3;
 //
 // SERIAL_PORT_HARDWARE_OPEN  Hardware serial ports which are open for use.  Their RX & TX
 //                            pins are NOT connected to anything by default.
-#define SERIAL_PORT_MONITOR         Serial
+#define SERIAL_PORT_MONITOR         SerialUSB
 #define SERIAL_PORT_USBVIRTUAL      SerialUSB
-#define SERIAL_PORT_HARDWARE_OPEN   Serial1
-#define SERIAL_PORT_HARDWARE_OPEN1  Serial2
-#define SERIAL_PORT_HARDWARE_OPEN2  Serial3
+#define SERIAL_PORT_HARDWARE_OPEN   Serial
+#define SERIAL_PORT_HARDWARE_OPEN1  Serial3
 #define SERIAL_PORT_HARDWARE        Serial
 #define SERIAL_PORT_HARDWARE1       Serial1
 #define SERIAL_PORT_HARDWARE2       Serial2
 #define SERIAL_PORT_HARDWARE3       Serial3
 
-#endif /* _VARIANT_ARDUINO_DUE_X_ */
+#include "opentracker.h"
 
+#endif /* _VARIANT_OPENTRACKER_ */

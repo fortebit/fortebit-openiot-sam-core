@@ -19,8 +19,8 @@
 # Makefile for compiling libArduino
 .SUFFIXES: .o .a .c .s
 
-CHIP=__SAM3X8E__
-VARIANT=arduino_due_x
+CHIP=__SAM3A4C__
+VARIANT=geolink_opentracker
 LIBNAME=libvariant_$(VARIANT)
 TOOLCHAIN=gcc
 
