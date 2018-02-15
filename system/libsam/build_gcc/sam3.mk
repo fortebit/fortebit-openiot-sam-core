@@ -62,6 +62,12 @@ CHIP_SERIE=sam3xa
 else ifeq ($(CHIP), __SAM3X8H__)
 CHIP_NAME=sam3x8h
 CHIP_SERIE=sam3xa
+else ifeq ($(CHIP), __SAM3A8C__)
+CHIP_NAME=sam3a8c
+CHIP_SERIE=sam3xa
+else ifeq ($(CHIP), __SAM3A4C__)
+CHIP_NAME=sam3a4c
+CHIP_SERIE=sam3xa
 else
 endif
 
@@ -158,7 +164,6 @@ create_output:
 #	@echo -------------------------
 #	@echo *$(A_SRC)
 #	@echo -------------------------
-
 	-@mkdir $(subst /,$(SEP),$(OUTPUT_BIN)) 1>$(DEV_NUL) 2>&1
 	-@mkdir $(OUTPUT_PATH) 1>$(DEV_NUL) 2>&1
 	@echo ------------------------------------------------------------------------------------
