@@ -52,7 +52,7 @@ extern "C" {
 /**INDENT-ON**/
 /// @endcond
 
-#if SAM3XA_SERIES
+#if SAM3XA_SERIES && defined(EMAC_H_INCLUDED)
 
 /**
  * \defgroup emac_group Ethernet Media Access Controller
