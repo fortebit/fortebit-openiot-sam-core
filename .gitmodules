@@ -1,0 +1,9 @@
+[submodule "libraries/DueFlashStorage"]
+	path = libraries/DueFlashStorage
+	url = https://github.com/geolink/DueFlashStorage.git
+[submodule "libraries/TinyGPS"]
+	path = libraries/TinyGPS
+	url = https://github.com/geolink/TinyGPS.git
+[submodule "libraries/due_can"]
+	path = libraries/due_can
+	url = https://github.com/geolink/due_can.git
