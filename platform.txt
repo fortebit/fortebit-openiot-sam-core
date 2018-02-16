@@ -5,7 +5,7 @@
 # For more info:
 # https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5-3rd-party-Hardware-specification
 
-name=OpenTracker ARM (32-bits) Boards
+name=OpenTracker Boards (SAM Core)
 version=1.0.6
 
 # Derived from Arduino SAM core 1.6.11
