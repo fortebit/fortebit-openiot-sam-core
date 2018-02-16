@@ -7,3 +7,6 @@
 [submodule "libraries/due_can"]
 	path = libraries/due_can
 	url = https://github.com/geolink/due_can.git
+[submodule "libraries/can_common"]
+	path = libraries/can_common
+	url = https://github.com/geolink/can_common.git
