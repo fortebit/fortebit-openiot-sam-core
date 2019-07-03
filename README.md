@@ -1,11 +1,10 @@
-# OpenTracker v2 - Arduino Core (SAM Architecture) [![GitHub release](https://img.shields.io/github/release/geolink/opentracker-sam-core.svg)](https://github.com/geolink/opentracker-sam-core/releases/latest)
+# Fortebit OpenTracker - Arduino Core (SAM Architecture) [![GitHub release](https://img.shields.io/github/release/fortebit/fortebit-openiot-sam-core.svg)](https://github.com/fortebit/fortebit-openiot-sam-core/releases/latest)
 
-
-This repository contains the source code and configuration files of the Arduino Core for Atmel's SAM3XA Series of microcontrollers and board support files for the [OpenTracker v2](https://geolink.io/opentracker.php) board (mostly compatible with [Arduino Due](https://www.arduino.cc/en/Main/ArduinoBoardDue)).
+This repository contains the source code and configuration files of the Arduino Core for Atmel's SAM3XA Series of microcontrollers and board support files for the [OpenTracker v2](https://fortebit.tech/open-iot-platform/) board (mostly compatible with [Arduino Due](https://www.arduino.cc/en/Main/ArduinoBoardDue)).
 
 ## Installation on Arduino IDE
 
-This core is included in the [OpenTracker Board Manager](https://github.com/geolink/opentracker-arduino-board) package. Please refer to that page for installation instructions.
+This core is included in the [Fortebit Open IoT Board Manager](https://github.com/fortebit/fortebit-openiot-arduino-boards) package. Please refer to that page for installation instructions.
 
 ## Development with Git
 
