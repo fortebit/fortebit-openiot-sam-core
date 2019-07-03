@@ -5,7 +5,7 @@ menu.SecureBit=Flash Security
 
 ## Old board revision 2.4
 
-opentracker_2_4.name=Geolink OpenTracker v2.4
+opentracker_2_4.name=OpenTracker v2.4
 opentracker_2_4.vid.0=0x2341
 opentracker_2_4.pid.0=0x003e
 opentracker_2_4.vid.1=0x2a03
@@ -19,12 +19,12 @@ opentracker_2_4.upload.wait_for_upload_port=true
 opentracker_2_4.upload.native_usb=true
 opentracker_2_4.build.mcu=cortex-m3
 opentracker_2_4.build.f_cpu=84000000L
-opentracker_2_4.build.usb_product="Geolink OpenTracker v2"
+opentracker_2_4.build.usb_product="OpenTracker v2"
 opentracker_2_4.build.board=OPENTRACKER_V2
 opentracker_2_4.build.core=arduino
 opentracker_2_4.build.extra_flags=-D__SAM3A4C__ -mthumb {build.usb_flags} -DOPENTRACKER_HW_REV=0x0240 {build.modem_flags}
 opentracker_2_4.build.ldscript=linker_scripts/gcc/flash.ld
-opentracker_2_4.build.variant=geolink_opentracker
+opentracker_2_4.build.variant=fortebit_opentracker
 opentracker_2_4.build.variant_system_lib=libsam_sam3a4c_gcc_rel.a
 opentracker_2_4.build.vid=0x2341
 opentracker_2_4.build.pid=0x003e
@@ -45,7 +45,7 @@ opentracker_2_4.menu.SecureBit.enabled.upload.tool=bossac_secure
 
 ## Old board revision 2.3 and earlier
 
-opentracker_2_3.name=Geolink OpenTracker v2.3 (and earlier)
+opentracker_2_3.name=OpenTracker v2.3 (and earlier)
 opentracker_2_3.vid.0=0x2341
 opentracker_2_3.pid.0=0x003e
 opentracker_2_3.vid.1=0x2a03
@@ -59,12 +59,12 @@ opentracker_2_3.upload.wait_for_upload_port=true
 opentracker_2_3.upload.native_usb=true
 opentracker_2_3.build.mcu=cortex-m3
 opentracker_2_3.build.f_cpu=84000000L
-opentracker_2_3.build.usb_product="Geolink OpenTracker v2"
+opentracker_2_3.build.usb_product="OpenTracker v2"
 opentracker_2_3.build.board=OPENTRACKER_V2
 opentracker_2_3.build.core=arduino
 opentracker_2_3.build.extra_flags=-D__SAM3A4C__ -mthumb {build.usb_flags} -DOPENTRACKER_HW_REV=0x0230 -DMODEM_M95=1
 opentracker_2_3.build.ldscript=linker_scripts/gcc/flash.ld
-opentracker_2_3.build.variant=geolink_opentracker
+opentracker_2_3.build.variant=fortebit_opentracker
 opentracker_2_3.build.variant_system_lib=libsam_sam3a4c_gcc_rel.a
 opentracker_2_3.build.vid=0x2341
 opentracker_2_3.build.pid=0x003e
